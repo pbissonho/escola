@@ -32,7 +32,7 @@ namespace Escola.Models
             }
         }
 
-        public List<Estudante> alunos { get; set; }
+        public List<Aluno> alunos { get; set; }
 
     }
 }

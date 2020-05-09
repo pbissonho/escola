@@ -1,8 +1,10 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using Escola.Models;
 
 namespace Escola.Models
 {
-    public class Estudante
+    public class Aluno
     {
 
         [Key]
@@ -21,3 +23,4 @@ namespace Escola.Models
     
     }
 }
+

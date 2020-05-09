@@ -18,7 +18,7 @@ namespace Escola.Repositorys
             this.context = context;
         }
 
-        public async void Create(Turma turma)
+        public async Task Create(Turma turma)
         {
             context.turmas.Add(turma);
             await context.SaveChangesAsync();

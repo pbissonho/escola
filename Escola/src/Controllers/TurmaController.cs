@@ -36,7 +36,7 @@ namespace Escola.Controllers
 
             if (ModelState.IsValid)
             {
-                repository.Create(turma);
+                await repository.Create(turma);
                 return turma;
 
             }

@@ -8,34 +8,34 @@ using Microsoft.EntityFrameworkCore;
 namespace Escola.Repositorys
 {
 
-    public class EstudanteRepository
+    public class AlunoRepository
     {
 
         readonly EscolaDataContext context;
 
-        public EstudanteRepository(EscolaDataContext context)
+        public AlunoRepository(EscolaDataContext context)
         {
             this.context = context;
         }
 
-        public async void Create(Estudante aluno)
+        public async Task Create(Aluno aluno)
         {
             context.estudantes.Add(aluno);
             await context.SaveChangesAsync();
 
         }
-        public void Update(Estudante aluno)
+        public void Update(Aluno aluno)
         {
 
         }
 
-        public async Task<Estudante> delete(int id)
+        public async Task<Aluno> delete(int id)
         {
             var estudante = await context.estudantes.FirstOrDefaultAsync(x => x.Id == id);
 
             if (estudante == null)
             {
-                throw new Exception("Não foi possivel encontrar o aluno de código" + id);
+                throw new Exception("Não foi possivel encontrar o aluno de código " + id);
             }
 
             try
@@ -53,14 +53,14 @@ namespace Escola.Repositorys
 
         }
 
-        public async Task<Estudante> GetById(int id)
+        public async Task<Aluno> GetById(int id)
         {
             var estudante = await context.estudantes.Include(x => x.Turma).FirstOrDefaultAsync(x => x.Id == id);
             return estudante;
         }
-        public async Task<List<Estudante>> GetAll()
+        public async Task<List<Aluno>> GetAll()
         {
-            var estudantes = await context.estudantes.Include(x => x.Turma).ToListAsync();
+            var estudantes = await context.estudantes.ToListAsync();
             return estudantes;
         }
     }

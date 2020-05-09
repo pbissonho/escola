@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 
 using Escola.Data;
+using Escola.Repositorys;
 
 namespace Escola
 {
@@ -32,6 +33,10 @@ namespace Escola
         {
             services.AddDbContext<EscolaDataContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<EscolaDataContext, EscolaDataContext>();
+            services.AddTransient<TurmaRepository, TurmaRepository>();
+            services.AddTransient<AlunoRepository, AlunoRepository>();
+
+
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );

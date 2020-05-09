@@ -6,7 +6,7 @@ namespace Escola.Data
 {
     public class EscolaDataContext : DbContext
     {
-        public DbSet<Estudante> estudantes { get; set; }
+        public DbSet<Aluno> estudantes { get; set; }
         public DbSet<Turma> turmas { get; set; }
 
 

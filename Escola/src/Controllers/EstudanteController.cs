@@ -12,32 +12,32 @@ using Microsoft.Extensions.Logging;
 namespace Escola.Controllers
 {
     [ApiController]
-    [Route("estudantes")]
-    public class EstudanteController : ControllerBase
+    [Route("Alunos")]
+    public class AlunoController : ControllerBase
     {
 
-        readonly EstudanteRepository repository;
+        readonly AlunoRepository repository;
 
-        public EstudanteController(EstudanteRepository repository)
+        public AlunoController(AlunoRepository repository)
         {
             this.repository = repository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Estudante>>> GetAll([FromServices] EscolaDataContext context)
+        public async Task<ActionResult<List<Aluno>>> GetAll([FromServices] EscolaDataContext context)
         {
             return await repository.GetAll();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Estudante>> Post([FromServices] EscolaDataContext context, [FromBody] Estudante estudante)
+        public async Task<ActionResult<Aluno>> Post([FromServices] EscolaDataContext context, [FromBody] Aluno Aluno)
         {
 
             if (ModelState.IsValid)
             {
 
-                await Task.Run(() => repository.Create(estudante));
-                return estudante;
+                await repository.Create(Aluno);
+                return Aluno;
 
             }
             else
@@ -50,12 +50,12 @@ namespace Escola.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Estudante>> delete(int id)
+        public async Task<ActionResult<Aluno>> delete(int id)
         {
             try
             {
-                var estudante = await repository.delete(id);
-                return estudante;
+                var Aluno = await repository.delete(id);
+                return Aluno;
             }
             catch (System.Exception erro)
             {
@@ -69,17 +69,17 @@ namespace Escola.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Estudante>> GetEstudanteByID(int id, [FromServices] EscolaDataContext context)
+        public async Task<ActionResult<Aluno>> GetAlunoByID(int id, [FromServices] EscolaDataContext context)
         {
 
-            var estudante = await repository.GetById(id);
+            var Aluno = await repository.GetById(id);
 
-            if (estudante == null)
+            if (Aluno == null)
             {
                 return NotFound();
             }
 
-            return estudante;
+            return Aluno;
         }
     }
 }
